@@ -1,0 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+function handler(event) {
+  var request = event.request;
+  var uri = request.uri;
+
+  if (uri.endsWith("/")) {
+    request.uri = uri + "index.html";
+    return request;
+  }
+
+  if (!uri.includes(".")) {
+    request.uri = uri + "/index.html";
+  }
+
+  return request;
+}

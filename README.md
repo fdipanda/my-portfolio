@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Franck Alexis Dipanda Portfolio
 
-## Getting Started
+Projects-first portfolio built with Next.js, TypeScript, Tailwind CSS, Framer Motion, and a static export path for Amazon S3 + CloudFront.
 
-First, run the development server:
+## Local development
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+```
 
-## Learn More
+The static export is written to `out/`.
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This repo includes:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `.github/workflows/deploy.yml` for GitHub Actions deployment
+- `infra/aws/cloudfront-url-rewrite.js` for extensionless route support
+- `infra/aws/bucket-policy.template.json` for OAC-restricted S3 access
+- `infra/aws/README.md` for the S3 + CloudFront + Route 53 setup
 
-## Deploy on Vercel
+### Required GitHub secrets
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
+- `AWS_S3_BUCKET`
+- `AWS_CLOUDFRONT_DISTRIBUTION_ID`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Required GitHub variables
+
+- `SITE_URL`
+- `AWS_REGION` (optional)
+
+## Resume asset
+
+The downloadable PDF is stored directly in:
+
+`public/resume/franck-dipanda-resume.pdf`
